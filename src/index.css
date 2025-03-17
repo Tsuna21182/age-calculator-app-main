@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary */
+
+  --color-Purple: #854dff;
+  --color-LightRed: #ff5757;
+
+  /* Neutral */
+
+  --color-White: #ffffff;
+  --color-OffWhite: #f0f0f0;
+  --color-LightGrey: #dbdbdb;
+  --color-SmokeyGrey: #716f6f;
+  --color-OffBlack: #141414;
+
+  /* font */
+
+  --font-display: "Poppins", sans-serif;
+}
