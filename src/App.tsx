@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Input from "./components/Input";
+import Age from "./components/Age";
+import { useState } from "react";
+
+import useCalculate from "./Hooks/Calculate";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { setDay, setMonth, setYear, Days, Years, Months, error } =
+    useCalculate();
+
+  const [showResults, setShowResults] = useState(false);
+
+  function handleClick() {
+    if (!error) setShowResults(true);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <main>
+      <section className="bg-White flex flex-col justify-center items-center text-left p-5 m-5 rounded-xl">
+        <Input
+          setDay={setDay}
+          setMonth={setMonth}
+          setYear={setYear}
+          error={error}
+        />
+
+        <button
+          className={`h-15 w-15 rounded-full flex justify-center items-center bg-Purple mt-10 cursor-pointer ${
+            error ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          onClick={handleClick}
+          disabled={!!error}
+        >
+          <img src="/images/icon-arrow.svg" alt="icono boton" className="w-6" />
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+        {showResults && <Age Days={Days!} Months={Months!} Years={Years!} />}
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;
