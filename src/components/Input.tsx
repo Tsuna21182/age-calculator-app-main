@@ -2,10 +2,19 @@ type InputProps = {
   setDay: React.Dispatch<React.SetStateAction<number>>;
   setMonth: React.Dispatch<React.SetStateAction<number>>;
   setYear: React.Dispatch<React.SetStateAction<number>>;
-  error: string | null;
+  errorDay: string | null;
+  errorMonth: string | null;
+  errorYear: string | null;
 };
 
-function Input({ setDay, setMonth, setYear, error }: InputProps) {
+function Input({
+  setDay,
+  setMonth,
+  setYear,
+  errorDay,
+  errorMonth,
+  errorYear,
+}: InputProps) {
   return (
     <section className="flex justify-center items-center gap-3">
       <div className="flex flex-col gap-2">
@@ -18,7 +27,7 @@ function Input({ setDay, setMonth, setYear, error }: InputProps) {
           placeholder="DD"
           onChange={(e) => setDay(Number(e.target.value))}
         />
-        {error && <p className="text-LightRed text-xs mt-2">{error}</p>}
+        {errorDay && <p className="text-LightRed text-xs mt-2">{errorDay}</p>}
       </div>
       <div className="flex flex-col gap-2">
         <label className="text-sm uppercase text-SmokeyGrey font-bold tracking-widest">
@@ -30,6 +39,9 @@ function Input({ setDay, setMonth, setYear, error }: InputProps) {
           placeholder="MM"
           onChange={(e) => setMonth(Number(e.target.value))}
         />
+        {errorMonth && (
+          <p className="text-LightRed text-xs mt-2">{errorMonth}</p>
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <label className="text-sm uppercase text-SmokeyGrey font-bold tracking-widest">
@@ -41,6 +53,7 @@ function Input({ setDay, setMonth, setYear, error }: InputProps) {
           placeholder="YYYY"
           onChange={(e) => setYear(Number(e.target.value))}
         />
+        {errorYear && <p className="text-LightRed text-xs mt-2">{errorYear}</p>}
       </div>
     </section>
   );

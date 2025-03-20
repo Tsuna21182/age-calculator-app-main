@@ -5,13 +5,22 @@ import { useState } from "react";
 import useCalculate from "./Hooks/Calculate";
 
 function App() {
-  const { setDay, setMonth, setYear, Days, Years, Months, error } =
-    useCalculate();
+  const {
+    setDay,
+    setMonth,
+    setYear,
+    Days,
+    Years,
+    Months,
+    errorDay,
+    errorMonth,
+    errorYear,
+  } = useCalculate();
 
   const [showResults, setShowResults] = useState(false);
 
   function handleClick() {
-    if (!error) setShowResults(true);
+    if (!errorDay && !errorMonth && !errorYear) setShowResults(true);
   }
 
   return (
@@ -21,19 +30,24 @@ function App() {
           setDay={setDay}
           setMonth={setMonth}
           setYear={setYear}
-          error={error}
+          errorDay={errorDay}
+          errorMonth={errorMonth}
+          errorYear={errorYear}
         />
 
         <button
-          className={`h-15 w-15 rounded-full flex justify-center items-center bg-Purple mt-10 cursor-pointer ${
-            error ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`h-15 w-15 rounded-full flex justify-center items-center bg-Purple mt-10 cursor-pointer `}
           onClick={handleClick}
-          disabled={!!error}
         >
           <img src="/images/icon-arrow.svg" alt="icono boton" className="w-6" />
         </button>
-        {showResults && <Age Days={Days!} Months={Months!} Years={Years!} />}
+
+        <Age
+          Days={Days!}
+          Months={Months!}
+          Years={Years!}
+          showResults={showResults}
+        />
       </section>
     </main>
   );

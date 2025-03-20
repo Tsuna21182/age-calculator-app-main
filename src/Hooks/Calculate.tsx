@@ -10,44 +10,51 @@ type CalculateProps = {
   Years: number | null;
   Months: number | null;
   Days: number | null;
-  error: string | null;
+  errorDay: string | null;
+  errorMonth: string | null;
+  errorYear: string | null;
+  error: void;
 };
 
 function useCalculate(): CalculateProps {
   const [day, setDay] = useState<number>(0);
   const [month, setMonth] = useState<number>(0);
   const [year, setYear] = useState<number>(0);
-  const [error, setError] = useState<string | null>(null);
+  const [errorDay, setErrorDay] = useState<string | null>(null);
+  const [errorMonth, setErrorMonth] = useState<string | null>(null);
+  const [errorYear, setErrorYear] = useState<string | null>(null);
 
   const now = new Date();
 
-  useMemo(() => {
-    if (month < 1 || month > 12) {
-      setError("Must be a validad month");
+  const error = useMemo(() => {
+    if (month < 0 || month > 12) {
+      setErrorMonth("Must be a validad month");
       return;
     }
-    if (day < 1 || day > 31) {
-      setError("Must be valid day");
+    if (day < 0 || day > 31) {
+      setErrorDay("Must be valid day");
       return;
     }
     if (year > now.getFullYear()) {
-      setError("Must be in the past");
+      setErrorYear("Must be in the past");
       return;
     }
-    setError(null);
+    setErrorMonth(null);
+    setErrorDay(null);
+    setErrorYear(null);
   }, [day, month, year]);
 
   const Years = useMemo(
-    () => (error ? null : now.getFullYear() - year),
-    [year, error]
+    () => (errorYear ? null : now.getFullYear() - year),
+    [year, errorYear]
   );
   const Months = useMemo(
-    () => (error ? null : now.getMonth() + 1 - month),
-    [month, error]
+    () => (errorMonth ? null : now.getMonth() + month),
+    [month, errorMonth]
   );
   const Days = useMemo(
-    () => (error ? null : now.getDate() + day),
-    [day, error]
+    () => (errorDay ? null : now.getDate() + day),
+    [day, errorDay]
   );
 
   return {
@@ -60,6 +67,9 @@ function useCalculate(): CalculateProps {
     Years,
     Months,
     Days,
+    errorDay,
+    errorMonth,
+    errorYear,
     error,
   };
 }
