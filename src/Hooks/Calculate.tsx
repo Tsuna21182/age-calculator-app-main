@@ -49,7 +49,7 @@ function useCalculate(): CalculateProps {
     [year, errorYear]
   );
   const Months = useMemo(
-    () => (errorMonth ? null : now.getMonth() + month),
+    () => (errorMonth ? null : now.getMonth() + 1 - month),
     [month, errorMonth]
   );
   const Days = useMemo(
