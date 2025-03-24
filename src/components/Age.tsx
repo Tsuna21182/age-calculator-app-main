@@ -7,17 +7,17 @@ type AgeProps = {
 
 function Age({ Days, Months, Years, showResults }: AgeProps) {
   return (
-    <section className="mt-8">
+    <section className="mt-8 md:ml-[-10rem] md:mb-5">
       <>
-        <p className="font-bold text-3xl">
+        <p className="font-bold text-3xl md:text-6xl">
           <span className="text-Purple">{showResults ? Years : "--"}</span>{" "}
           years
         </p>
-        <p className="font-bold text-3xl">
+        <p className="font-bold text-3xl md:text-6xl">
           <span className="text-Purple">{showResults ? Months : "--"}</span>{" "}
           month
         </p>
-        <p className="font-bold text-3xl">
+        <p className="font-bold text-3xl md:text-6xl">
           <span className="text-Purple">{showResults ? Days : "--"}</span> day
         </p>
       </>

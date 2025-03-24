@@ -16,14 +16,14 @@ function Input({
   errorYear,
 }: InputProps) {
   return (
-    <section className="flex justify-center items-center gap-3">
+    <section className="flex justify-center gap-3 md:ml-[-10rem]">
       <div className="flex flex-col gap-2">
         <label className="text-sm uppercase text-SmokeyGrey font-bold tracking-widest">
           day
         </label>
         <input
           type="number"
-          className="border-[1px] border-SmokeyGrey p-2  rounded-lg w-20 outline-0 text-SmokeyGrey font-bold"
+          className="border-[1px] border-SmokeyGrey p-2  rounded-lg w-20 outline-0 text-SmokeyGrey font-bold md:w-25 md:p-4"
           placeholder="DD"
           onChange={(e) => setDay(Number(e.target.value))}
         />
@@ -35,7 +35,7 @@ function Input({
         </label>
         <input
           type="number"
-          className="border-[1px] border-SmokeyGrey p-2  rounded-lg w-20 outline-0 text-SmokeyGrey font-bold"
+          className="border-[1px] border-SmokeyGrey p-2  rounded-lg w-20 outline-0 text-SmokeyGrey font-bold md:w-25 md:p-4"
           placeholder="MM"
           onChange={(e) => setMonth(Number(e.target.value))}
         />
@@ -49,7 +49,7 @@ function Input({
         </label>
         <input
           type="number"
-          className="border-[1px] border-SmokeyGrey p-2  rounded-lg w-20 outline-0 text-SmokeyGrey font-bold"
+          className="border-[1px] border-SmokeyGrey p-2  rounded-lg w-20 outline-0 text-SmokeyGrey font-bold md:w-25 md:p-4"
           placeholder="YYYY"
           onChange={(e) => setYear(Number(e.target.value))}
         />
